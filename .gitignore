@@ -1,0 +1,3 @@
+/object_detection/src/checkpoints/*
+/object_detection/src/data/*.weights
+

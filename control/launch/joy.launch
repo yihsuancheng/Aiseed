@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<launch>
+  
+  <node pkg="joy" type="joy_node" name="joy_node">
+    <param name="dev" type="string" value="/dev/input/js1"/>
+  </node>
+  
+  <node name="xbox" pkg="control" type="xbox.py" output="screen">  
+  </node>
+
+</launch>
