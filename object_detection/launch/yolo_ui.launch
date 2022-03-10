@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<launch>
+ 
+  <node name="yolo" pkg="object_detection" type="detect_camera_ros.py" output="screen">  
+  </node>
+
+  <node name="ui" pkg="ui" type="interface.py" output="screen">  
+  </node>
+ 
+</launch>

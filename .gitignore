@@ -1,0 +1,3 @@
+/object_detection/src/tensorflow-yolov4/checkpoints/*
+/object_detection/src/tensorflow-yolov4/data/*.weights
+
