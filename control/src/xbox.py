@@ -19,10 +19,11 @@ disarmed = 0
 land = 0
 takeoff = 0
 offboard = 0
+rtl = 0
 
 def joy_remapping(msg):
     global manual_cmd, armed, disarmed
-    global land, takeoff, offboard
+    global land, takeoff, offboard, rtl
     buttons = msg.buttons
     axes = msg.axes
     
@@ -46,13 +47,13 @@ def joy_remapping(msg):
     land = A
     takeoff = Y
     offboard = B
-
+    rtl = X
 
     # rate.sleep()
 
 def main():
     global manual_cmd, armed, disarmed
-    global land, takeoff, offboard
+    global land, takeoff, offboard, rtl
     rospy.wait_for_service('/mavros/cmd/arming')
     rospy.wait_for_service('/mavros/set_mode')
     arm_call = rospy.ServiceProxy('/mavros/cmd/arming', CommandBool)
@@ -68,6 +69,8 @@ def main():
             set_mode_call(custom_mode = 'AUTO.TAKEOFF')
         if offboard == 1:
             set_mode_call(custom_mode = 'OFFBOARD')
+        if rtl == 1:
+            set_mode_call(custom_mode = 'AUTO.RTL')
 
         joy_pub.publish(manual_cmd)
         rate.sleep()
