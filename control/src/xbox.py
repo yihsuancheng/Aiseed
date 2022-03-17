@@ -1,7 +1,7 @@
 #! /usr/bin/env python3
 import rospy
 from mavros_msgs.msg import ManualControl
-from std_msgs.msg import Float64MultiArray, String
+from std_msgs.msg import String
 from sensor_msgs.msg import Joy
 from mavros_msgs.srv import CommandBool
 from mavros_msgs.srv import SetMode
@@ -55,22 +55,20 @@ def main():
     global manual_cmd, armed, disarmed
     global land, takeoff, offboard, rtl
     rospy.wait_for_service('/mavros/cmd/arming')
-    rospy.wait_for_service('/mavros/set_mode')
     arm_call = rospy.ServiceProxy('/mavros/cmd/arming', CommandBool)
-    set_mode_call = rospy.ServiceProxy('/mavros/set_mode', SetMode)
     while not rospy.is_shutdown():
         if armed == 1:
             arm_call(True)
         if disarmed == 1:
             arm_call(False)
         if land == 1:
-            set_mode_call(custom_mode = 'AUTO.LAND')
+            mode_pub.publish('AUTO.LAND')
         if takeoff == 1:
-            set_mode_call(custom_mode = 'AUTO.TAKEOFF')
+            mode_pub.publish('AUTO.TAKEOFF')
         if offboard == 1:
-            set_mode_call(custom_mode = 'OFFBOARD')
+            mode_pub.publish('OFFBOARD')
         if rtl == 1:
-            set_mode_call(custom_mode = 'AUTO.RTL')
+            mode_pub.publish('AUTO.RTL')
 
         joy_pub.publish(manual_cmd)
         rate.sleep()
@@ -79,6 +77,6 @@ if __name__ == '__main__':
     rospy.init_node('xbox')
     rate = rospy.Rate(HZ)
     joy_pub = rospy.Publisher('/mavros/manual_control/send', ManualControl, queue_size=10)
+    mode_pub = rospy.Publisher('/mode', String , queue_size=1)
     rospy.Subscriber("/joy", Joy, joy_remapping, queue_size = 1, buff_size = 52428800)
     main()
-    # rospy.spin()

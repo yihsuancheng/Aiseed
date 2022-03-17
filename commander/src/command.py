@@ -24,6 +24,4 @@ if __name__ == "__main__":
     rospy.wait_for_service('/mavros/set_mode')
     set_mode_call = rospy.ServiceProxy('/mavros/set_mode', SetMode)
     rospy.Subscriber("/object_yolo", StringArray, object_callback)
-    
-    # yolo_image_pub = rospy.Publisher("/image_yolo", sensor_msgs.msg.Image, queue_size=1)
     rospy.spin()
