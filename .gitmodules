@@ -1,3 +1,6 @@
 [submodule "joystick_drivers"]
 	path = joystick_drivers
 	url = https://github.com/ros-drivers/joystick_drivers.git
+[submodule "PX4-Avoidance"]
+	path = PX4-Avoidance
+	url = git@github.com:PX4/PX4-Avoidance.git
