@@ -25,7 +25,7 @@ import sys
 
 import rospy
 import sensor_msgs.msg
-from object_detection.msg import StringArray
+from object_detection.msg import StringArray, ObjectsArray
 from cv_bridge import CvBridge
 
 input_size = 416
@@ -67,7 +67,7 @@ def main_callback(raw_image):
         score_threshold=score
     )
     pred_bbox = [boxes.numpy(), scores.numpy(), classes.numpy(), valid_detections.numpy()]
-    image, object_names = utils.draw_bbox(frame, pred_bbox)
+    image, objects = utils.draw_bbox(frame, pred_bbox)
     
     curr_time = time.time()
     exec_time = curr_time - prev_time
@@ -78,9 +78,12 @@ def main_callback(raw_image):
     ros_image = bridge.cv2_to_imgmsg(result, encoding="passthrough")
     yolo_image_pub.publish(ros_image)
     ### publish objects
-    names = StringArray()
-    names.strings = object_names
-    yolo_object_pub.publish(names)
+    # names = StringArray()
+    # names.strings = object_names
+    # yolo_object_pub.publish(names)
+    obj = ObjectsArray()
+    obj.objects = objects
+    yolo_object_pub.publish(obj)
     
     # ??? 
     # result = cv2.cvtColor(result, cv2.COLOR_RGB2BGR)
@@ -93,6 +96,6 @@ if __name__ == '__main__':
     bridge = CvBridge()
     rospy.init_node("yolo")
     rospy.Subscriber("/camera/rgb/image_raw", sensor_msgs.msg.Image, main_callback)
-    yolo_image_pub = rospy.Publisher("/image_yolo", sensor_msgs.msg.Image, queue_size=1)
-    yolo_object_pub = rospy.Publisher("/object_yolo", StringArray , queue_size=1)
+    yolo_image_pub = rospy.Publisher("/yolo/image_yolo", sensor_msgs.msg.Image, queue_size=1)
+    yolo_object_pub = rospy.Publisher("/yolo/object_yolo", ObjectsArray , queue_size=1)
     rospy.spin()

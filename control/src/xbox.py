@@ -16,6 +16,8 @@ manual_cmd.r = 0
 
 armed = 0
 disarmed = 0
+manual = 0
+position = 0
 land = 0
 takeoff = 0
 offboard = 0
@@ -23,7 +25,7 @@ rtl = 0
 
 def joy_remapping(msg):
     global manual_cmd, armed, disarmed
-    global land, takeoff, offboard, rtl
+    global manual, position, land, takeoff, offboard, rtl
     buttons = msg.buttons
     axes = msg.axes
     
@@ -33,7 +35,6 @@ def joy_remapping(msg):
     # print(axes)
     LRleft,UDleft,LT,LRright,UDright,RT,ckLR,ckUD = axes 
     A,B,X,Y,LB,RB,back,start,power,BSL,BSR=buttons
-    
     # stay in the air
     UDleft = (UDleft+1000)/2
     
@@ -42,8 +43,10 @@ def joy_remapping(msg):
     manual_cmd.z = UDleft
     manual_cmd.r = -LRleft
     
-    armed = LB
-    disarmed = RB
+    armed = LT
+    disarmed = RT
+    manual = LB
+    position = RB
     land = A
     takeoff = Y
     offboard = B
@@ -53,14 +56,18 @@ def joy_remapping(msg):
 
 def main():
     global manual_cmd, armed, disarmed
-    global land, takeoff, offboard, rtl
+    global manual, position, land, takeoff, offboard, rtl
     rospy.wait_for_service('/mavros/cmd/arming')
     arm_call = rospy.ServiceProxy('/mavros/cmd/arming', CommandBool)
     while not rospy.is_shutdown():
-        if armed == 1:
+        if armed == -1000:
             arm_call(True)
-        if disarmed == 1:
+        if disarmed == -1000:
             arm_call(False)
+        if manual == 1:
+            mode_pub.publish('MANUAL')
+        if position == 1:
+            mode_pub.publish('POSCTL')
         if land == 1:
             mode_pub.publish('AUTO.LAND')
         if takeoff == 1:

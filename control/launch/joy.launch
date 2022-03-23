@@ -8,4 +8,7 @@
   <node name="xbox" pkg="control" type="xbox.py" output="screen">  
   </node>
 
+  <node name="mode_center" pkg="commander" type="mode_center.py" output="screen">  
+  </node>
+
 </launch>

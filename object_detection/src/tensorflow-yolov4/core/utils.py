@@ -5,7 +5,16 @@ import numpy as np
 import tensorflow as tf
 from core.config import cfg
 
-object_names = []
+##### objects #####
+class objects():
+    def __init__(self,name,lu_x , lu_y, ud_x, ud_y):
+        self.name = name
+        self.UL_x = lu_x
+        self.UL_y = lu_y
+        self.BR_x = ud_x
+        self.BR_y = ud_y
+##### objects #####
+
 
 def load_freeze_layer(model='yolov4', tiny=False):
     if tiny:
@@ -141,8 +150,7 @@ def draw_bbox(image, bboxes, classes=read_class_names(cfg.YOLO.CLASSES), show_la
     out_boxes, out_scores, out_classes, num_boxes = bboxes
     
     ### return object names ###
-    object_names = []
-    
+    objectss = []
     for i in range(num_boxes[0]):
         if int(out_classes[0][i]) < 0 or int(out_classes[0][i]) > num_classes: continue
         coor = out_boxes[0][i]
@@ -158,8 +166,10 @@ def draw_bbox(image, bboxes, classes=read_class_names(cfg.YOLO.CLASSES), show_la
         bbox_thick = int(0.6 * (image_h + image_w) / 600)
         c1, c2 = (coor[1], coor[0]), (coor[3], coor[2])
         cv2.rectangle(image, c1, c2, bbox_color, bbox_thick)
-	
-        object_names.append(classes[class_ind])
+        
+        ### set objects attributes ###
+        obj = objects(classes[class_ind], coor[1], coor[0], coor[3], coor[2] )
+        objectss.append(obj)
 	
         if show_label:
             bbox_mess = '%s: %.2f' % (classes[class_ind], score)
@@ -169,7 +179,7 @@ def draw_bbox(image, bboxes, classes=read_class_names(cfg.YOLO.CLASSES), show_la
 
             cv2.putText(image, bbox_mess, (c1[0], np.float32(c1[1] - 2)), cv2.FONT_HERSHEY_SIMPLEX,
                         fontScale, (0, 0, 0), bbox_thick // 2, lineType=cv2.LINE_AA)
-    return image, object_names
+    return image, objectss
 
 def bbox_iou(bboxes1, bboxes2):
     """
