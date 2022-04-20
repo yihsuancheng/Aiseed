@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<launch>
+
+  <include file="$(find px4)/launch/posix_sitl_vtol_aiseed.launch">
+  </include>
+  
+  <include file="$(find mavros)/launch/px4.launch">
+  <arg name="fcu_url" value="udp://:14540@127.0.0.1:14557"/>
+  </include>
+  
+  <include file="$(find control)/launch/joy.launch">
+  </include>
+ 
+</launch>
