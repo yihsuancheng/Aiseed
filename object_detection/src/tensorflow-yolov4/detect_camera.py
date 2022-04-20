@@ -2,7 +2,7 @@
 import time
 import os
 
-os.environ['CUDA_VISIBLE_DEVICES'] = '-1'
+# os.environ['CUDA_VISIBLE_DEVICES'] = '-1'
 
 import tensorflow as tf
 physical_devices = tf.config.experimental.list_physical_devices('GPU')
@@ -52,7 +52,7 @@ def main():
         for key, value in pred_bbox.items():
             boxes = value[:, :, 0:4]
             pred_conf = value[:, :, 4:]
-            print(value)
+            # print(value)
 
         boxes, scores, classes, valid_detections = tf.image.combined_non_max_suppression(
             boxes=tf.reshape(boxes, (tf.shape(boxes)[0], -1, 1, 4)),
@@ -66,11 +66,11 @@ def main():
         pred_bbox = [boxes.numpy(), scores.numpy(), classes.numpy(), valid_detections.numpy()]
         image, _= utils.draw_bbox(frame, pred_bbox)
 
-        print(type(image))
+        # print(type(image))
         curr_time = time.time()
         exec_time = curr_time - prev_time
         result = np.asarray(image)
-        print(result)
+        # print(result)
         info = "time: %.2f ms" %(1000*exec_time)
         print(info)
 
