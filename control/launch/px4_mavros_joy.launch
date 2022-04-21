@@ -1,7 +1,8 @@
 <?xml version="1.0"?>
 <launch>
-
-  <include file="$(find px4)/launch/posix_sitl_aiseed.launch">
+  
+  <arg name="type" default=""/>
+  <include file="$(find px4)/launch/posix_sitl$(arg type)_aiseed.launch">
   </include>
   
   <include file="$(find mavros)/launch/px4.launch">

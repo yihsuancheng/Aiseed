@@ -18,6 +18,10 @@ def mode_callback(mode):
         set_mode_call(custom_mode = 'POSCTL')
     elif mode.data == 'AUTO.TAKEOFF':
         set_mode_call(custom_mode = 'AUTO.TAKEOFF')
+    elif mode.data == 'AUTO.LOITER':
+        set_mode_call(custom_mode = 'AUTO.LOITER')
+    elif mode.data == 'AUTO.MISSION':
+        set_mode_call(custom_mode = 'AUTO.MISSION')
     elif mode.data == 'OFFBOARD':
         for _ in range(1):
             twist = TwistStamped() 
