@@ -61,7 +61,7 @@ def joy_remapping(msg):
     offboard = B
     rtl = X
 
-    transition += power
+    transition = ckLR
     # rate.sleep()
 
 def main():
@@ -94,10 +94,12 @@ def main():
             mode_pub.publish('OFFBOARD')
         if rtl == 1:
             mode_pub.publish('AUTO.RTL')
-        if transition%2 == 1:
-            transition_call(state = 4)
-        else:
+        if transition == 1000:
+            # MR
             transition_call(state = 3)
+        elif transition == -1000:
+            # FW
+            transition_call(state = 4)
         
         joy_pub.publish(manual_cmd)
         rate.sleep()
