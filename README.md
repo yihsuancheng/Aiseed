@@ -1,5 +1,5 @@
 # PX4_simulation
-drone simulation in gazebo
+Drone simulation in gazebo
 > **Note** This simulation environment is built in ubuntu 20.04
 
 ## Contents
@@ -7,20 +7,52 @@ drone simulation in gazebo
 * [Github Setting](#github-setting)
 * [Installation](#installation)
 * [Usage](#usage)
+    * [Structure](#structure)
+    * [Joysticks](#joysticks)
+    * [Convention](#convention)
+* [Function](#function)
     * [Tracking](#tracking)
-    * [Obstacle Avoidance](#obstacle-avoidance)
     * [Gimbal Control](#gimbal-control)
+    * [Obstacle Avoidance](#obstacle-avoidance)
 * [Reference](#reference)
 
 ## Github setting
 
-* add to contributor
+* being a contributor of this repository
 
 * setting ssh key
+
+  > **Note** please refer to [this website](https://blog.jaycetyle.com/2018/02/github-ssh/)
 
 ## Installation
 
 * install ros noetic
+
+  1. Add ROS to sources.list:
+     
+         sudo sh -c 'echo "deb http://packages.ros.org/ros/ubuntu $(lsb_release -sc) main" > /etc/apt/sources.list.d/ros-latest.list'
+         sudo apt install curl # if you haven't already installed curl
+         curl -s https://raw.githubusercontent.com/ros/rosdistro/master/ros.asc | sudo apt-key add -
+         sudo apt update
+     
+
+  1. Install ROS with Gazebo:
+
+         sudo apt install ros-noetic-desktop-full
+         source /opt/ros/noetic/setup.bash
+
+  1. Install and initialize rosdep.
+
+         sudo apt install python3-rosdep python3-rosinstall python3-rosinstall-generator python3-wstool build-essential
+         sudo apt install python3-rosdep
+         sudo rosdep init
+         rosdep update
+
+  1. ros test
+
+         roscore
+  
+  > **Note** please refer to [this website](http://wiki.ros.org/noetic/Installation/Ubuntu) to get more installation details
 
 * install PX4_simulation package (using ssh)
       
@@ -94,6 +126,87 @@ drone simulation in gazebo
       
         roslaunch control px4_mavros_joy.launch type:=_vtol_gimbal
 
+## Usage
+### Structure
+### Joysticks
+* vehicle joy mapping
 
 
+* gimbal joy mapping
+
+
+### Convention
+* every modified models are all located in the ***~/PX4-Autopilot/Tools/sitl_gazebo/models*** with post_prefix ***aiseed***
+* every modified worlds are all located in the ***~/PX4-Autopilot/Tools/sitl_gazebo/worlds*** with post_prefix ***aiseed***
+* most of the often-use launch file are located in the ***control*** package 
+* launch files' name follows the rules below
+
+       (function)_(function)_(function)_(function).launch
+   
+   >  Function lists
+   >  
+   >  mavros : ros & mavlink bridge
+   >  
+   >  px4 : px4 firmware simulator
+   >  
+   >  joy : joysticks driver
+   >  
+   >  ui : objection detection & user interface
+   
+   ex. if you want to test the function of mavros px4 and with joysticks control, you can use
+   
+       roslaunch control px4_mavros_joy.launch
+       
+   if you want to add the function of object detection
+       
+       roslaunch control ui_px4_mavros_joy.launch
+   
+
+## Function
+### Tracking
+> **Note** this function is specific to multiroter
+>
+> **Note** you need to turn on **ui** function
+>
+
+ex. 
+
+    roslaunch control ui_px4_mavros_joy.launch
+    
+and open the second terminal, run
+
+    rosrun commander commander_offboard.py
+    
+you can fly to aiseed person, and ensure the detection result showing on the ui. Then you can switch to offboard mode, the drone should start to follow the aiseed person(you can choose the following target by modifying ***commander_offboard.py***)
+
+> **Note** feel free to implement any offboard mode function in the ***commander_offboard.py***. ex. tracking, path planning, obstacle avoidance ...etc.  
+
+### Gimbal Control
+> **Note** you need two xbox joysticks to control vehicle and gimbal at the same time
+> 
+> **Note** this function is specific to using *type:=_vtol_gimbal*
+
+ex. 
+
+    roslaunch control px4_mavros_joy.launch type:=_vtol_gimbal
+    
+and open the second terminal, run
+
+    rosrun gimbal_control xbox_gimbal.py
+
+### Obstacle Avoidance
+> **Note** we only use *local_planner*
+> 
+> **Note** you can change **obstacle_cost_param_** which represents the distance between obstacle and the drone that will dominate the cost function by running `rosrun rqt_reconfigure rqt_reconfigure` 
+
+* simulation
+
+       roslaunch local_planner local_planner_depth-camera.launch
+    
+> **Note** you can turn on gazebo client by modifying *argument gui* into *true* which is located in the ***avoidance_sitl_mavros.launch***
+
+* hardware
+
+
+> **Note** please refer to [this website](https://github.com/Aiseed/PX4-Avoidance) to get more OA detailed information
 ## Reference
