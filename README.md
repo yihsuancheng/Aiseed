@@ -91,7 +91,8 @@ Drone simulation in gazebo
       sudo apt install libpcl1 ros-noetic-octomap-*
       # Gstreamer plugins (for Gazebo camera)
       sudo apt install gstreamer1.0-plugins-bad gstreamer1.0-plugins-base gstreamer1.0-plugins-good gstreamer1.0-plugins-ugly libgstreamer-plugins-base1.0-dev
-      
+* download weight for object detection
+  * download tiny-yolov4.weight
 * install joystick dependencies
 
       sudo apt-get install ros-noetic-joy
@@ -128,12 +129,13 @@ Drone simulation in gazebo
 
 ## Usage
 ### Structure
+![](resources/structure.png)
 ### Joysticks
 * vehicle joy mapping
-  [](resources/vehicle_joy_mapping.png)
+  ![](resources/vehicle_joy_mapping.png)
 
 * gimbal joy mapping
-
+  ![](resources/gimbal_joy_mapping.png)
 
 ### Convention
 * every modified models are all located in the ***~/PX4-Autopilot/Tools/sitl_gazebo/models*** with post_prefix ***aiseed***
