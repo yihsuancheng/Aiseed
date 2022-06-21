@@ -14,6 +14,7 @@ Drone simulation in gazebo
     * [Tracking](#tracking)
     * [Gimbal Control](#gimbal-control)
     * [Obstacle Avoidance](#obstacle-avoidance)
+* [Known issue](#known-issue)
 * [Reference](#reference)
 
 ## Github setting
@@ -91,8 +92,25 @@ Drone simulation in gazebo
       sudo apt install libpcl1 ros-noetic-octomap-*
       # Gstreamer plugins (for Gazebo camera)
       sudo apt install gstreamer1.0-plugins-bad gstreamer1.0-plugins-base gstreamer1.0-plugins-good gstreamer1.0-plugins-ugly libgstreamer-plugins-base1.0-dev
+      
 * download weight for object detection
-  * download tiny-yolov4.weight
+  * download tiny-yolov4.weight from [here](https://github.com/AlexeyAB/darknet/releases/download/darknet_yolo_v4_pre/yolov4-tiny.weights)
+        
+        mv ~/Downoads/yolov4-tiny.weights ~/PX4_simulation_ws/src/PX4_simulation/object_detection/src/tensorflow-yolov4/data
+        
+  * install tensorflow
+        
+        pip3 install tensorflow
+        
+  * convert darknet weights to tensorflow
+        
+        cd ~/PX4_simulation_ws/src/PX4_simulation/object_detection/src/tensorflow-yolov4
+        python3 save_model.py --weights ./data/yolov4-tiny.weights --output ./checkpoints/yolov4-tiny-416 --input_size 416 --model yolov4 --tiny
+        
+  * test
+        
+        python3 detect.py --weights ./checkpoints/yolov4-tiny-416 --size 416 --model yolov4 --image ./data/kite.jpg --tiny
+        
 * install joystick dependencies
 
       sudo apt-get install ros-noetic-joy
