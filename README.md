@@ -130,7 +130,7 @@ Drone simulation in gazebo
 ### Structure
 ### Joysticks
 * vehicle joy mapping
-
+  [](resources/vehicle_joy_mapping.png)
 
 * gimbal joy mapping
 
