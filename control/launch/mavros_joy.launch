@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<launch>
+  
+  <arg name="udp" default=""/>
+  <include file="$(find mavros)/launch/px4.launch">
+  <arg name="fcu_url" default="$(arg udp)"/>
+  </include>
+  
+  <include file="$(find control)/launch/joy.launch">
+  </include>
+ 
+</launch>
