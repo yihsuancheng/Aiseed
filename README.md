@@ -14,7 +14,7 @@ Drone simulation in gazebo
     * [Tracking](#tracking)
     * [Gimbal Control](#gimbal-control)
     * [Obstacle Avoidance](#obstacle-avoidance)
-* [Known issue](#known-issue)
+* [Known issues](#known-issue)
 * [Reference](#reference)
 
 ## Github setting
@@ -230,7 +230,7 @@ and open the second terminal, run
 > Companion computer : Nvidia Xavier NX (ubuntu 18.04)
 >
 > FCU : pixhawk
-
+>
 > Camera : Realsense D435
 
 * Layout
@@ -303,10 +303,12 @@ and open the second terminal, run
           sudo chmod 666 /dev/ttyTHS0 
           roslaunch local_planner avoidance.launch fcu_url:=/dev/ttyTHS0:921600
 
-> **Note** 828112073098 is serial number representing realsense d435
+> **Note** 828112073098 is a serial number representing realsense d435
 > 
 > **Note** avoidance.launch only works in an environment that possesses a good GPS signal and a connection with pixhawk
 >
 > **Note** please refer to [this website](https://github.com/Aiseed/PX4-Avoidance) to get more OA detailed information
-> 
+
+## Known issues
+
 ## Reference
