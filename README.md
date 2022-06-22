@@ -219,14 +219,94 @@ and open the second terminal, run
 > 
 > **Note** you can change **obstacle_cost_param_** which represents the distance between obstacle and the drone that will dominate the cost function by running `rosrun rqt_reconfigure rqt_reconfigure` 
 
-* simulation
+#### Simulation
 
        roslaunch local_planner local_planner_depth-camera.launch
     
 > **Note** you can turn on gazebo client by modifying *argument gui* into *true* which is located in the ***avoidance_sitl_mavros.launch***
 
-* hardware
+#### Hardware
+
+> Companion computer : Nvidia Xavier NX (ubuntu 18.04)
+>
+> FCU : pixhawk
+
+> Camera : Realsense D435
+
+* Layout
+
+* Pixhawk setting
+
+   Parameters to set through QGC:
+   * `COM_OBS_AVOID` to Enabled
+   * `MAV_1_CONFIG`, `MAV_1_MODE`, `SER_TEL2_BAUD` to enable MAVLink on a serial port. For more information: [PX4 Dev Guide]     (http://dev.px4.io/en/companion_computer/pixhawk_companion.html#pixhawk-setup)
 
 
+* Xavier setting
+
+   1. installing ros-melodic
+
+        1. Add ROS to sources.list:
+     
+               sudo sh -c 'echo "deb http://packages.ros.org/ros/ubuntu $(lsb_release -sc) main" > /etc/apt/sources.list.d/ros-latest.list'
+               sudo apt install curl # if you haven't already installed curl
+               curl -s https://raw.githubusercontent.com/ros/rosdistro/master/ros.asc | sudo apt-key add -
+               sudo apt update
+     
+
+        1. Install ROS with Gazebo:
+
+               sudo apt install ros-melodic-desktop-full
+               source /opt/ros/melodic/setup.bash
+
+        1. Install and initialize rosdep.
+
+               sudo apt install python3-rosdep python3-rosinstall python3-rosinstall-generator python3-wstool build-essential
+               sudo apt install python3-rosdep
+               sudo rosdep init
+               rosdep update
+
+        1. ros test
+
+               roscore  
+
+   1. installing realsense camera driver and ros wrapper
+      
+          sudo apt-get install ros-melodic-realsense2-camera
+   
+   1. installing mavros
+          
+          cd ~
+          sudo apt install ros-melodic-mavros ros-melodic-mavros-extras
+          wget https://raw.githubusercontent.com/mavlink/mavros/master/mavros/scripts/install_geographiclib_datasets.sh
+          chmod +x install_geographiclib_datasets.sh
+          sudo ./install_geographiclib_datasets.sh
+          
+   1. install avoidance package
+         
+          cd ~
+          mkdir -p ~/obs_ws/src
+          cd ~/obs_ws/src
+          git clone --recursive git@github.com:PX4/PX4-Avoidance.git
+          cd ..
+          catkin_make
+          
+   1. create avoidance launch file
+
+          cd ~/obs_ws/PX4-Avoidance/tools
+          mv generate_launchfile.sh.deprecated generate_launchfile.sh
+          export CAMERA_CONFIGS="camera_main,realsense,828112073098,0,0,0,0,0,0"
+          . generate_launchfile.sh
+   
+   1. launch avoidance file
+          
+          sudo chmod 666 /dev/ttyTHS0 
+          roslaunch local_planner avoidance.launch fcu_url:=/dev/ttyTHS0:921600
+
+> **Note** 828112073098 is serial number representing realsense d435
+> 
+> **Note** avoidance.launch only works in an environment that possesses a good GPS signal and a connection with pixhawk
+>
 > **Note** please refer to [this website](https://github.com/Aiseed/PX4-Avoidance) to get more OA detailed information
+> 
 ## Reference
