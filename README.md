@@ -2,7 +2,7 @@
 Drone simulation in gazebo
 > **Note** This simulation environment is built in ubuntu 20.04
 
-## Contents
+# Contents
 
 * [Github Setting](#github-setting)
 * [Installation](#installation)
@@ -17,7 +17,7 @@ Drone simulation in gazebo
 * [Known issues](#known-issue)
 * [Reference](#reference)
 
-## Github setting
+# Github setting
 
 * being a contributor of this repository
 
@@ -25,7 +25,7 @@ Drone simulation in gazebo
 
   > **Note** please refer to [this website](https://blog.jaycetyle.com/2018/02/github-ssh/)
 
-## Installation
+# Installation
 
 * install ros noetic
 
@@ -145,7 +145,7 @@ Drone simulation in gazebo
       
         roslaunch control px4_mavros_joy.launch type:=_vtol_gimbal
 
-## Usage
+# Usage
 ### Structure
 ![](resources/structure.png)
 ### Joysticks
@@ -182,7 +182,7 @@ Drone simulation in gazebo
        roslaunch control ui_px4_mavros_joy.launch
    
 
-## Function
+# Function
 ### Tracking
 > **Note** this function is specific to multiroter
 >
@@ -206,34 +206,34 @@ you can fly to aiseed person, and ensure the detection result showing on the ui.
   
    ![](resources/tracking_diagram.png)
 
-It is a classical PID control with visual servo
+   It is a classical PID control with visual servo.
 
 * Tracking function usage
    
    ![](resources/tracking_func.png)
 
-> Parameters :
->
-> cv_image_depth : depth image  
->
-> objects : message type = **ObjectsArray**, incorporting multiple [Objects](https://github.com/Aiseed/PX4_simulation/blob/main/object_detection/msg/Objects.msg) messages
->
-> attitude : local NED/ENU frame
->
-> pError : previous x, y, z error
->
-> pid : pid 
-> 
-> target : 1 of 80 coco dataset flags
->
-> flag : "default" or "vision"
-
-* Tree Diagram
+   > Parameters :
+   >
+   > cv_image_depth : depth image  
+   >
+   > objects : message type = **ObjectsArray**, incorporting multiple [Objects](https://github.com/Aiseed/PX4_simulation/blob/main/object_detection/msg/Objects.msg) messages
+   >
+   > attitude : local NED/ENU frame
+   >
+   > pError : previous x, y, z error
+   >
+   > pid : pid 
+   > 
+   > target : 1 of 80 coco dataset flags
+   >
+   > flag : "default" or "vision"
 
 ### Gimbal Control
 > **Note** you need two xbox joysticks to control vehicle and gimbal at the same time
 > 
 > **Note** this function is specific to using *type:=_vtol_gimbal*
+> 
+> **Note** please refer to [this website](https://mavlink.io/en/services/gimbal_v2.html) and [this website](https://docs.px4.io/master/en/advanced/gimbal_control.html)to get more gimbal control information
 
 #### Quick Start
 ex. 
@@ -245,11 +245,9 @@ and open the second terminal, run
     rosrun gimbal_control xbox_gimbal.py
 
 #### Algorithm
-* Block Diagram
-
-
-
-
+* parameter setting through QGC
+   * `MNT_MODE_IN` to ***MAVlink gimbal protocol v2***
+   * `MNT_MODE_OUT` to ***MAVlink gimbal protocol v2***
 
 
 ### Obstacle Avoidance
@@ -276,7 +274,7 @@ and open the second terminal, run
 * Pixhawk setting
 
    Parameters to set through QGC:
-   * `COM_OBS_AVOID` to Enabled
+   * `COM_OBS_AVOID` to ***Enabled***
    * `MAV_1_CONFIG`, `MAV_1_MODE`, `SER_TEL2_BAUD` to enable MAVLink on a serial port. For more information: [PX4 Dev Guide]     (http://dev.px4.io/en/companion_computer/pixhawk_companion.html#pixhawk-setup)
 
 
@@ -347,6 +345,6 @@ and open the second terminal, run
 >
 > **Note** please refer to [this website](https://github.com/Aiseed/PX4-Avoidance) to get more OA detailed information
 
-## Known issues
+# Known issues
 
-## Reference
+# Reference
