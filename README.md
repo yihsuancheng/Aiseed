@@ -188,7 +188,7 @@ Drone simulation in gazebo
 >
 > **Note** you need to turn on **ui** function
 >
-
+#### Quick Start
 ex. 
 
     roslaunch control ui_px4_mavros_joy.launch
@@ -201,11 +201,41 @@ you can fly to aiseed person, and ensure the detection result showing on the ui.
 
 > **Note** feel free to implement any offboard mode function in the ***commander_offboard.py***. ex. tracking, path planning, obstacle avoidance ...etc.  
 
+#### Algorithm
+* Block Diagram
+  
+   ![](resources/tracking_diagram.png)
+
+It is a classical PID control with visual servo
+
+* Tracking function usage
+   
+   ![](resources/tracking_func.png)
+
+> Parameters :
+>
+> cv_image_depth : depth image  
+>
+> objects : message type = **ObjectsArray**, incorporting multiple [Objects](https://github.com/Aiseed/PX4_simulation/blob/main/object_detection/msg/Objects.msg) messages
+>
+> attitude : local NED/ENU frame
+>
+> pError : previous x, y, z error
+>
+> pid : pid 
+> 
+> target : 1 of 80 coco dataset flags
+>
+> flag : "default" or "vision"
+
+* Tree Diagram
+
 ### Gimbal Control
 > **Note** you need two xbox joysticks to control vehicle and gimbal at the same time
 > 
 > **Note** this function is specific to using *type:=_vtol_gimbal*
 
+#### Quick Start
 ex. 
 
     roslaunch control px4_mavros_joy.launch type:=_vtol_gimbal
@@ -213,6 +243,14 @@ ex.
 and open the second terminal, run
 
     rosrun gimbal_control xbox_gimbal.py
+
+#### Algorithm
+* Block Diagram
+
+
+
+
+
 
 ### Obstacle Avoidance
 > **Note** we only use *local_planner*
@@ -242,7 +280,7 @@ and open the second terminal, run
    * `MAV_1_CONFIG`, `MAV_1_MODE`, `SER_TEL2_BAUD` to enable MAVLink on a serial port. For more information: [PX4 Dev Guide]     (http://dev.px4.io/en/companion_computer/pixhawk_companion.html#pixhawk-setup)
 
 
-* Xavier setting
+* Companion computer setting
 
    1. installing ros-melodic
 
