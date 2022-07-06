@@ -53,7 +53,7 @@ def offboard_main():
     
     while True:
         if mode == "OFFBOARD":
-            pError = tracking(cv_image_depth, objects, attitude,  pError, pid, target = "bus", flag = "vision")
+            pError = tracking(cv_image_depth, objects, attitude,  pError, pid, target = "person", flag = "vision")
             rate.sleep()
        
 

@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<launch>
+  
+  <include file="$(find px4)/launch/coast_guard_sitl_sdf.launch">
+  </include>
+  
+  <include file="$(find control)/launch/joy_vtol.launch">
+  </include>
+
+</launch>
