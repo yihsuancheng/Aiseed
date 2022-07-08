@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<launch>
+  <arg name="vehicle" default = "/vtol"/>
+  <arg name="joy_input" default = "js0"/>
+  <group ns="$(arg vehicle)">
+    <!-- c++ remap topic name with prefix ns directly. Yet, python won't??? -->
+    <node pkg="joy" type="joy_node" name="joy_node">
+      <param name="dev" type="string" value="/dev/input/$(arg joy_input)"/>
+    </node>
+    
+    <node name="xbox" pkg="control" type="xbox.py" output="screen">  
+      <remap from="/mavros/cmd/arming" to="$(arg vehicle)/mavros/cmd/arming"/>
+      <remap from="/mavros/cmd/vtol_transition" to="$(arg vehicle)/mavros/cmd/vtol_transition"/>
+      <remap from="/mavros/manual_control/send" to="$(arg vehicle)/mavros/manual_control/send"/>
+      <remap from="/mode" to="$(arg vehicle)/mode"/>
+      <remap from="/joy" to="$(arg vehicle)/joy"/>
+    </node>
+
+    <node name="mode_center" pkg="commander" type="mode_center.py" output="screen">  
+      <remap from="/mavros/set_mode" to="$(arg vehicle)/mavros/set_mode"/>
+      <remap from="/mode" to="$(arg vehicle)/mode"/>
+      <remap from="/mavros/setpoint_velocity/cmd_vel" to="$(arg vehicle)/mavros/setpoint_velocity/cmd_vel"/>
+    </node>
+
+  </group>
+</launch>

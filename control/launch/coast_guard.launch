@@ -4,7 +4,14 @@
   <include file="$(find px4)/launch/coast_guard_sitl_sdf.launch">
   </include>
   
-  <include file="$(find control)/launch/joy_vtol.launch">
+  <include file="$(find control)/launch/joy_multi_vehicle.launch">
+  <arg name="vehicle" value="/boat"/>
+  <arg name="joy_input" value="js0"/>
+  </include>
+
+  <include file="$(find control)/launch/joy_multi_vehicle.launch">
+  <arg name="vehicle" value="/vtol"/>
+  <arg name="joy_input" value="js1"/>
   </include>
 
 </launch>
