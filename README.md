@@ -145,9 +145,15 @@ Drone simulation in gazebo
         
         roslaunch control px4_mavros_joy.launch type:=_vtol
       
-      or
-      
-        roslaunch control px4_mavros_joy.launch type:=_vtol_gimbal
+      >  **type lists** :
+      >  
+      >  _vtol
+      >  
+      >  _vtol_gimbal
+      >  
+      >  _vtol_gimbal_irlock
+      >  
+      >  _hex_gimbal
 
 # Usage
 ### Structure
