@@ -360,3 +360,8 @@ and open the second terminal, run
    After installing cuda and cudnn, the object detection will not work correctly.
 
 # Reference
+
+* [Px4 userguide](https://docs.px4.io/main/en/)
+* [GGC userguide](https://docs.qgroundcontrol.com/master/en/)
+* [Mavlink userguide](https://mavlink.io/en/)
+* [Mavros userguide](http://wiki.ros.org/mavros)
