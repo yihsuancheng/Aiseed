@@ -69,7 +69,11 @@ Drone simulation in gazebo
       cd ~
       git clone --recursive git@github.com:Aiseed/PX4-Autopilot.git
 
+* checkout the correct branch
 
+      cd ~/PX4-Autopilot
+      git checkout actuator_test
+      
 * install ubuntu.sh (includes all the dependency required by the simulation tools)
       
       cd ~
@@ -346,5 +350,7 @@ and open the second terminal, run
 > **Note** please refer to [this website](https://github.com/Aiseed/PX4-Avoidance) to get more OA detailed information
 
 # Known issues
+## Cuda installation
+   After installing cuda and cudnn, the object detection will not work correctly.
 
 # Reference
