@@ -358,6 +358,12 @@ and open the second terminal, run
 # Known issues
 ## Cuda installation
    After installing cuda and cudnn, the object detection will not work correctly.
+## Simulation Video streaming
+   Only if ui function starts, the QGC can recieve video streaming.
+## Companion computer and pixhawk orange cube connection problems
+   When connecting xavier and orange cube with txrx, the computer will not recieve any data from orange cube (not seen with pixhawk 1)
+
+
 
 # Reference
 
