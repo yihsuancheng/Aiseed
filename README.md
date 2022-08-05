@@ -9,6 +9,7 @@ Drone simulation in gazebo
 * [Usage](#usage)
     * [Structure](#structure)
     * [Joysticks](#joysticks)
+    * [Sensor](#sensor)
     * [Convention](#convention)
 * [Function](#function)
     * [Tracking](#tracking)
@@ -69,7 +70,11 @@ Drone simulation in gazebo
       cd ~
       git clone --recursive git@github.com:Aiseed/PX4-Autopilot.git
 
+* checkout the correct branch
 
+      cd ~/PX4-Autopilot
+      git checkout actuator_test
+      
 * install ubuntu.sh (includes all the dependency required by the simulation tools)
       
       cd ~
@@ -141,13 +146,20 @@ Drone simulation in gazebo
         
         roslaunch control px4_mavros_joy.launch type:=_vtol
       
-      or
-      
-        roslaunch control px4_mavros_joy.launch type:=_vtol_gimbal
+      >  **type lists** :
+      >  
+      >  _vtol
+      >  
+      >  _vtol_gimbal
+      >  
+      >  _vtol_gimbal_irlock
+      >  
+      >  _hex_gimbal
 
 # Usage
 ### Structure
 ![](resources/structure.png)
+
 ### Joysticks
 * vehicle joy mapping
   ![](resources/vehicle_joy_mapping.png)
@@ -155,6 +167,19 @@ Drone simulation in gazebo
 * gimbal joy mapping
   ![](resources/gimbal_joy_mapping.png)
 
+### Sensor
+* this section will teach you how to add customized on the vehicle
+  
+  ex. adding gimbal on the vtol
+      
+  1. find the gimbal sensor in the following path ***~/PX4-Autopilot/Tools/sitl_gazebo/models***
+  
+  1. add this sensor in the vtol with the following format and define gimbal's pose
+  
+  
+      
+         
+         
 ### Convention
 * every modified models are all located in the ***~/PX4-Autopilot/Tools/sitl_gazebo/models*** with post_prefix ***aiseed***
 * every modified worlds are all located in the ***~/PX4-Autopilot/Tools/sitl_gazebo/worlds*** with post_prefix ***aiseed***
@@ -346,5 +371,18 @@ and open the second terminal, run
 > **Note** please refer to [this website](https://github.com/Aiseed/PX4-Avoidance) to get more OA detailed information
 
 # Known issues
+## Cuda installation
+   After installing cuda and cudnn, the object detection will not work correctly.
+## Simulation Video streaming
+   Only if ui function starts, the QGC can recieve video streaming.
+## Companion computer and pixhawk orange cube connection problems
+   When connecting xavier and orange cube with txrx, the computer will not recieve any data from orange cube (not seen with pixhawk 1)
+
+
 
 # Reference
+
+* [Px4 userguide](https://docs.px4.io/main/en/)
+* [GGC userguide](https://docs.qgroundcontrol.com/master/en/)
+* [Mavlink userguide](https://mavlink.io/en/)
+* [Mavros userguide](http://wiki.ros.org/mavros)
