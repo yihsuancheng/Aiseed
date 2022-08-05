@@ -9,6 +9,7 @@ Drone simulation in gazebo
 * [Usage](#usage)
     * [Structure](#structure)
     * [Joysticks](#joysticks)
+    * [Sensor](#sensor)
     * [Convention](#convention)
 * [Function](#function)
     * [Tracking](#tracking)
@@ -158,6 +159,7 @@ Drone simulation in gazebo
 # Usage
 ### Structure
 ![](resources/structure.png)
+
 ### Joysticks
 * vehicle joy mapping
   ![](resources/vehicle_joy_mapping.png)
@@ -165,6 +167,19 @@ Drone simulation in gazebo
 * gimbal joy mapping
   ![](resources/gimbal_joy_mapping.png)
 
+### Sensor
+* this section will teach you how to add customized on the vehicle
+  
+  ex. adding gimbal on the vtol
+      
+  1. find the gimbal sensor in the following path ***~/PX4-Autopilot/Tools/sitl_gazebo/models***
+  
+  1. add this sensor in the vtol with the following format and define gimbal's pose
+  
+  
+      
+         
+         
 ### Convention
 * every modified models are all located in the ***~/PX4-Autopilot/Tools/sitl_gazebo/models*** with post_prefix ***aiseed***
 * every modified worlds are all located in the ***~/PX4-Autopilot/Tools/sitl_gazebo/worlds*** with post_prefix ***aiseed***
