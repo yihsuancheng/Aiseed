@@ -79,5 +79,5 @@ if __name__ == '__main__':
     send_command(the_connection, 1001, 255, 0, 0, 0, 0, 0, 0)
     rospy.init_node('xbox_gimbal')
     rate = rospy.Rate(HZ)
-    rospy.Subscriber("/joy_gimbal/joy", Joy, joy_remapping, queue_size = 1, buff_size = 52428800)
+    rospy.Subscriber("/gimbal/joy", Joy, joy_remapping, queue_size = 1, buff_size = 52428800)
     rospy.spin()

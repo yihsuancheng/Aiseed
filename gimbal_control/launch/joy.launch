@@ -1,13 +1,11 @@
 <?xml version="1.0"?>
 <launch>
-
-  <group ns="joy_gimbal">    
+  <arg name="joy_input" default = "js1"/>
+  <group ns="gimbal">    
     <node pkg="joy" type="joy_node" name="joy_node">
-        <param name="dev" type="string" value="/dev/input/js1"/>
+        <param name="dev" type="string" value="/dev/input/$(arg joy_input)"/>
+    </node>
+    <node name="xbox_gimbal" pkg="gimbal_control" type="xbox_gimbal.py" output="screen">  
     </node>
   </group>
-
-  <node name="xbox_gimbal" pkg="gimbal_control" type="xbox_gimbal.py" output="screen">  
-  </node>
-
 </launch>

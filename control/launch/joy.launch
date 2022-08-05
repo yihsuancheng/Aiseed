@@ -1,8 +1,8 @@
 <?xml version="1.0"?>
 <launch>
-  
+  <arg name="joy_input" default = "js0"/>
   <node pkg="joy" type="joy_node" name="joy_node">
-    <param name="dev" type="string" value="/dev/input/js0"/>
+      <param name="dev" type="string" value="/dev/input/$(arg joy_input)"/>
   </node>
   
   <node name="xbox" pkg="control" type="xbox.py" output="screen">  
