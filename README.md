@@ -173,13 +173,11 @@ Drone simulation in gazebo
   ex. adding gimbal on the vtol
       
   1. find the gimbal sensor in the following path ***~/PX4-Autopilot/Tools/sitl_gazebo/models***
-  
+     ![](resources/add_sensor1.png)  
   1. add this sensor in the vtol with the following format and define gimbal's pose
-  
-  
-      
-         
-         
+     ![](resources/add_sensor2.png)
+  1. done !!!
+ 
 ### Convention
 * every modified models are all located in the ***~/PX4-Autopilot/Tools/sitl_gazebo/models*** with post_prefix ***aiseed***
 * every modified worlds are all located in the ***~/PX4-Autopilot/Tools/sitl_gazebo/worlds*** with post_prefix ***aiseed***
