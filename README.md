@@ -20,7 +20,7 @@ Drone simulation in gazebo
 
 # Github setting
 
-* being a contributor of this repository
+* being a contributor of this repository and [sitl_gazebo](https://github.com/Aiseed/sitl_gazebo) and [.bash](https://github.com/Aiseed/.bash)
 
 * setting ssh key
 
@@ -114,6 +114,7 @@ Drone simulation in gazebo
         
   * test
         
+        cd ~/PX4_simulation_ws/src/PX4_simulation/object_detection/src/tensorflow-yolov4
         python3 detect.py --weights ./checkpoints/yolov4-tiny-416 --size 416 --model yolov4 --image ./data/kite.jpg --tiny
         
 * install joystick dependencies
@@ -137,8 +138,8 @@ Drone simulation in gazebo
         source ~/.bash/.px4_bash
         source ~/.bash/.env_bash (for tracking)
         
-* quick test (without AI, gimbal control and tracking)
-  * launch with quadcopter
+* quick test
+  * launch with quadcopter(without AI, gimbal control and tracking)
         
         roslaunch control px4_mavros_joy.launch
       
