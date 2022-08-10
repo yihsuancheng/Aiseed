@@ -27,6 +27,10 @@ Drone simulation in gazebo
   > **Note** please refer to [this website](https://blog.jaycetyle.com/2018/02/github-ssh/)
 
 # Installation
+* update & upgrade ubuntu
+
+        sudo apt-get update
+        sudo apt-get upgrade
 
 * install ros noetic
 
