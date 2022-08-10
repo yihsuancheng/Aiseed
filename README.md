@@ -60,6 +60,22 @@ Drone simulation in gazebo
   
   > **Note** please refer to [this website](http://wiki.ros.org/noetic/Installation/Ubuntu) to get more installation details
 
+* install mavros
+      
+      cd ~
+      sudo apt-get install ros-noetic-mavros ros-noetic-mavros-extras
+
+* install joystick dependencies
+
+      sudo apt-get install ros-noetic-joy
+      sudo apt-get install libspnav-dev libbluetooth-dev libcwiid-dev
+
+* install GeographicLib datasets
+      
+      cd ~
+      wget https://raw.githubusercontent.com/mavlink/mavros/master/mavros/scripts/install_geographiclib_datasets.sh
+      sudo bash ./install_geographiclib_datasets.sh
+
 * install PX4_simulation package (using ssh)
       
       cd ~
@@ -84,16 +100,7 @@ Drone simulation in gazebo
       cd ~
       bash ./PX4-Autopilot/Tools/setup/ubuntu.sh
       
-* install mavros
-      
-      cd ~
-      sudo apt-get install ros-noetic-mavros ros-noetic-mavros-extras
-      
-* install GeographicLib datasets
-      
-      cd ~
-      wget https://raw.githubusercontent.com/mavlink/mavros/master/mavros/scripts/install_geographiclib_datasets.sh
-      sudo bash ./install_geographiclib_datasets.sh
+
       
 * install obstacle avoidance dependencies
       
@@ -120,11 +127,6 @@ Drone simulation in gazebo
         
         cd ~/PX4_simulation_ws/src/PX4_simulation/object_detection/src/tensorflow-yolov4
         python3 detect.py --weights ./checkpoints/yolov4-tiny-416 --size 416 --model yolov4 --image ./data/kite.jpg --tiny
-        
-* install joystick dependencies
-
-      sudo apt-get install ros-noetic-joy
-      sudo apt-get install libspnav-dev libbluetooth-dev libcwiid-dev
 
 * install .bash file (using ssh)
       
