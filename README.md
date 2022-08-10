@@ -64,7 +64,7 @@ Drone simulation in gazebo
       
       cd ~
       mkdir -p ~/PX4_simulation_ws/src
-      cd ~/PX4_simulation/src
+      cd ~/PX4_simulation_ws/src
       git clone --recursive git@github.com:Aiseed/PX4_simulation.git
       cd ..
       catkin_make
