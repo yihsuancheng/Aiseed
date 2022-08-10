@@ -136,7 +136,7 @@ Drone simulation in gazebo
         
         source ~/.bash/.ros_bash
         source ~/.bash/.px4_bash
-        source ~/.bash/.env_bash (for tracking)
+        source ~/.bash/.env_bash # (for tracking)
         
 * quick test
   * launch with quadcopter(without AI, gimbal control and tracking)
