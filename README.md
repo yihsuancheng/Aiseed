@@ -75,6 +75,13 @@ Drone simulation in gazebo
 
       sudo apt-get install ros-noetic-joy
       sudo apt-get install libspnav-dev libbluetooth-dev libcwiid-dev
+
+* install obstacle avoidance dependencies
+      
+      sudo apt install ros-noetic-stereo-image-proc ros-noetic-image-view
+      sudo apt install libpcl1 ros-noetic-octomap-*
+      # Gstreamer plugins (for Gazebo camera)
+      sudo apt install gstreamer1.0-plugins-bad gstreamer1.0-plugins-base gstreamer1.0-plugins-good gstreamer1.0-plugins-ugly libgstreamer-plugins-base1.0-dev
       
 * install PX4_simulation package (using ssh)
       
@@ -99,15 +106,6 @@ Drone simulation in gazebo
       
       cd ~
       bash ./PX4-Autopilot/Tools/setup/ubuntu.sh
-      
-
-      
-* install obstacle avoidance dependencies
-      
-      sudo apt install ros-noetic-stereo-image-proc ros-noetic-image-view
-      sudo apt install libpcl1 ros-noetic-octomap-*
-      # Gstreamer plugins (for Gazebo camera)
-      sudo apt install gstreamer1.0-plugins-bad gstreamer1.0-plugins-base gstreamer1.0-plugins-good gstreamer1.0-plugins-ugly libgstreamer-plugins-base1.0-dev
       
 * download weight for object detection
   * download tiny-yolov4.weight from [here](https://github.com/AlexeyAB/darknet/releases/download/darknet_yolo_v4_pre/yolov4-tiny.weights)
