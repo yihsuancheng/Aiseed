@@ -65,17 +65,17 @@ Drone simulation in gazebo
       cd ~
       sudo apt-get install ros-noetic-mavros ros-noetic-mavros-extras
 
-* install joystick dependencies
-
-      sudo apt-get install ros-noetic-joy
-      sudo apt-get install libspnav-dev libbluetooth-dev libcwiid-dev
-
 * install GeographicLib datasets
       
       cd ~
       wget https://raw.githubusercontent.com/mavlink/mavros/master/mavros/scripts/install_geographiclib_datasets.sh
       sudo bash ./install_geographiclib_datasets.sh
 
+* install joystick dependencies
+
+      sudo apt-get install ros-noetic-joy
+      sudo apt-get install libspnav-dev libbluetooth-dev libcwiid-dev
+      
 * install PX4_simulation package (using ssh)
       
       cd ~
