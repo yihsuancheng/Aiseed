@@ -122,17 +122,9 @@ Drone simulation in gazebo
   * install tensorflow
         
         pip3 install tensorflow
+        pip3 install easydict
         
-  * convert darknet weights to tensorflow
-        
-        cd ~/PX4_simulation_ws/src/PX4_simulation/object_detection/src/tensorflow-yolov4
-        python3 save_model.py --weights ./data/yolov4-tiny.weights --output ./checkpoints/yolov4-tiny-416 --input_size 416 --model yolov4 --tiny
-        
-  * test
-        
-        cd ~/PX4_simulation_ws/src/PX4_simulation/object_detection/src/tensorflow-yolov4
-        python3 detect.py --weights ./checkpoints/yolov4-tiny-416 --size 416 --model yolov4 --image ./data/kite.jpg --tiny
-
+  
 * install .bash file (using ssh)
       
       cd ~
@@ -149,6 +141,17 @@ Drone simulation in gazebo
         source ~/.bash/.ros_bash
         source ~/.bash/.px4_bash
         source ~/.bash/.env_bash # (for tracking)
+  
+  * convert darknet weights to tensorflow
+        
+        cd ~/PX4_simulation_ws/src/PX4_simulation/object_detection/src/tensorflow-yolov4
+        python3 save_model.py --weights ./data/yolov4-tiny.weights --output ./checkpoints/yolov4-tiny-416 --input_size 416 --model yolov4 --tiny
+        
+  * test
+        
+        cd ~/PX4_simulation_ws/src/PX4_simulation/object_detection/src/tensorflow-yolov4
+        python3 detect.py --weights ./checkpoints/yolov4-tiny-416 --size 416 --model yolov4 --image ./data/kite.jpg --tiny
+
         
 * quick test
   * launch with quadcopter(without AI, gimbal control and tracking)
