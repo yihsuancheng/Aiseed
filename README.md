@@ -89,9 +89,16 @@ Drone simulation in gazebo
       mkdir -p ~/PX4_simulation_ws/src
       cd ~/PX4_simulation_ws/src
       git clone --recursive git@github.com:Aiseed/PX4_simulation.git
-      cd ..
-      catkin_make
       
+* remove global plannar which is in PX4-Avoidance package (this package will result in a failed catkin_make process, and we don't the reason so far. QQ...)
+      
+      rm -r ~/PX4_simulation_ws/src/PX4_simulation/PX4-Avoidance/global_planner
+
+* make this working space
+
+      cd ~/PX4_simulation_ws
+      catkin_make
+    
 * install PX4-Autopilot package (using ssh)
       
       cd ~
@@ -136,6 +143,7 @@ Drone simulation in gazebo
   
         cd ~
         vim ~/.bashrc
+        
   * add the below to the bottom of .bashrc file
         
         source ~/.bash/.ros_bash
