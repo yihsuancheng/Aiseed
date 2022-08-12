@@ -114,17 +114,6 @@ Drone simulation in gazebo
       cd ~
       bash ./PX4-Autopilot/Tools/setup/ubuntu.sh
       
-* download weight for object detection
-  * download tiny-yolov4.weight from [here](https://github.com/AlexeyAB/darknet/releases/download/darknet_yolo_v4_pre/yolov4-tiny.weights)
-        
-        mv ~/Downloads/yolov4-tiny.weights ~/PX4_simulation_ws/src/PX4_simulation/object_detection/src/tensorflow-yolov4/data
-        
-  * install tensorflow
-        
-        pip3 install tensorflow
-        pip3 install easydict
-        
-  
 * install .bash file (using ssh)
       
       cd ~
@@ -141,7 +130,17 @@ Drone simulation in gazebo
         source ~/.bash/.ros_bash
         source ~/.bash/.px4_bash
         source ~/.bash/.env_bash # (for tracking)
-  
+      
+* download weight for object detection
+  * download tiny-yolov4.weight from [here](https://github.com/AlexeyAB/darknet/releases/download/darknet_yolo_v4_pre/yolov4-tiny.weights)
+        
+        mv ~/Downloads/yolov4-tiny.weights ~/PX4_simulation_ws/src/PX4_simulation/object_detection/src/tensorflow-yolov4/data
+        
+  * install tensorflow
+        
+        pip3 install tensorflow
+        pip3 install easydict
+        
   * convert darknet weights to tensorflow
         
         cd ~/PX4_simulation_ws/src/PX4_simulation/object_detection/src/tensorflow-yolov4
