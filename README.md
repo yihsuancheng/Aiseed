@@ -135,7 +135,8 @@ Drone simulation in gazebo
         source ~/.bash/.px4_bash
         source ~/.bash/.env_bash # (for tracking)
 * make simulation
-
+        
+        cd ~/PX4-Autopilot
         make px4_sitl gazebo
  
 * open a new terminal by **crtl+alt+t**
