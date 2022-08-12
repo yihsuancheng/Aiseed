@@ -209,6 +209,7 @@ Drone simulation in gazebo
 ### Convention
 * every modified models are all located in the ***~/PX4-Autopilot/Tools/sitl_gazebo/models*** with postfix ***aiseed***
 * every modified worlds are all located in the ***~/PX4-Autopilot/Tools/sitl_gazebo/worlds*** with postfix ***aiseed***
+* every modified posix launch files are all located in the ***~/PX4-Autopilot/launch*** with postfix ***aiseed***
 * most of the often-use launch file are located in the ***control*** package 
 * launch files' name follows the rules below
 
