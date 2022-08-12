@@ -126,20 +126,23 @@ Drone simulation in gazebo
 * source bash file (add environment variable)
   * open the .bashrc file
   
-        cd ~
-        vim ~/.bashrc
+          cd ~
+          vim ~/.bashrc
         
   * add the below to the bottom of .bashrc file
         
-        source ~/.bash/.ros_bash
-        source ~/.bash/.px4_bash
-        source ~/.bash/.env_bash # (for tracking)
+          source ~/.bash/.ros_bash
+          source ~/.bash/.px4_bash
+          source ~/.bash/.env_bash # (for tracking)
+
+  * source bash file
+
+          source ~/.bashrc
+
 * make simulation
         
         cd ~/PX4-Autopilot
         make px4_sitl gazebo
- 
-* open a new terminal by **crtl+alt+t**
 
 * download weight for object detection
   * download tiny-yolov4.weight from [here](https://github.com/AlexeyAB/darknet/releases/download/darknet_yolo_v4_pre/yolov4-tiny.weights)
