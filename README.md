@@ -134,7 +134,12 @@ Drone simulation in gazebo
         source ~/.bash/.ros_bash
         source ~/.bash/.px4_bash
         source ~/.bash/.env_bash # (for tracking)
-      
+* make simulation
+
+        make px4_sitl gazebo
+ 
+* open a new terminal by **crtl+alt+t**
+
 * download weight for object detection
   * download tiny-yolov4.weight from [here](https://github.com/AlexeyAB/darknet/releases/download/darknet_yolo_v4_pre/yolov4-tiny.weights)
         
