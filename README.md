@@ -111,7 +111,7 @@ Drone simulation in gazebo
 * checkout the correct branch
 
       cd ~/PX4-Autopilot
-      git checkout actuator_test
+      git checkout simulation
       
 * install ubuntu.sh (includes all the dependency required by the simulation tools)
       
