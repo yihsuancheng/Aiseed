@@ -117,7 +117,7 @@ Drone simulation in gazebo
 * download weight for object detection
   * download tiny-yolov4.weight from [here](https://github.com/AlexeyAB/darknet/releases/download/darknet_yolo_v4_pre/yolov4-tiny.weights)
         
-        mv ~/Downoads/yolov4-tiny.weights ~/PX4_simulation_ws/src/PX4_simulation/object_detection/src/tensorflow-yolov4/data
+        mv ~/Downloads/yolov4-tiny.weights ~/PX4_simulation_ws/src/PX4_simulation/object_detection/src/tensorflow-yolov4/data
         
   * install tensorflow
         
