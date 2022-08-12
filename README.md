@@ -32,6 +32,10 @@ Drone simulation in gazebo
         sudo apt-get update
         sudo apt-get upgrade
 
+* install vim 
+        
+        sudo apt-get install vim
+        
 * install ros noetic
 
   1. Add ROS to sources.list:
