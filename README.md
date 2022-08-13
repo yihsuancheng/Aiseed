@@ -285,7 +285,7 @@ you can fly to aiseed person, and ensure the detection result showing on the ui.
 > 
 > **Note** this function is specific to using *type:=_vtol_gimbal*
 > 
-> **Note** please refer to [this website](https://mavlink.io/en/services/gimbal_v2.html) and [this website](https://docs.px4.io/master/en/advanced/gimbal_control.html)to get more gimbal control information
+> **Note** please refer to [this website](https://mavlink.io/en/services/gimbal_v2.html) and [this website](https://docs.px4.io/master/en/advanced/gimbal_control.html) to get more gimbal control information
 
 #### Quick Start
 ex. 
