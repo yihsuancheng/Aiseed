@@ -294,7 +294,16 @@ ex.
     
 and open the second terminal, run
 
-    rosrun gimbal_control xbox_gimbal.py
+    roslaunch gimbal_control joy.py
+    
+    
+> **Note** if you want to use one joystick, using "joy_input" </br>
+    
+     
+    roslaunch control px4_mavros.launch type:=_vtol_gimbal
+    
+    roslaunch gimbal_control joy.launch joy_input:=js0
+    
 
 #### Algorithm
 * parameter setting through QGC
