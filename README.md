@@ -342,6 +342,10 @@ and open the second terminal, run
 * Companion computer setting
 
    1. installing ros-melodic
+        1. update & upgrade
+               
+               sudo apt-get update
+               sudo apt-get upgrade
 
         1. Add ROS to sources.list:
      
@@ -388,9 +392,13 @@ and open the second terminal, run
           cd ..
           catkin_make
           
+   1. source avoidance package
+   
+          source ~/obs_ws/devel/setup.bash
+          
    1. create avoidance launch file
 
-          cd ~/obs_ws/PX4-Avoidance/tools
+          cd ~/obs_ws/src/PX4-Avoidance/tools
           mv generate_launchfile.sh.deprecated generate_launchfile.sh
           export CAMERA_CONFIGS="camera_main,realsense,828112073098,0,0,0,0,0,0"
           . generate_launchfile.sh
@@ -398,6 +406,7 @@ and open the second terminal, run
    1. launch avoidance file
           
           sudo chmod 666 /dev/ttyTHS0 
+          source ~/obs_ws/devel/setup.bash
           roslaunch local_planner avoidance.launch fcu_url:=/dev/ttyTHS0:921600
 
 > **Note** 828112073098 is a serial number representing realsense d435
