@@ -362,8 +362,8 @@ and open the second terminal, run
 
         1. Install and initialize rosdep.
 
-               sudo apt install python3-rosdep python3-rosinstall python3-rosinstall-generator python3-wstool build-essential
-               sudo apt install python3-rosdep
+               sudo apt install python-rosdep python-rosinstall python-rosinstall-generator python-wstool build-essential
+               sudo apt install python-rosdep
                sudo rosdep init
                rosdep update
 
@@ -401,7 +401,8 @@ and open the second terminal, run
           cd ~/obs_ws/src/PX4-Avoidance/tools
           mv generate_launchfile.sh.deprecated generate_launchfile.sh
           export CAMERA_CONFIGS="camera_main,realsense,828112073098,0,0,0,0,0,0"
-          . generate_launchfile.sh
+          cd ..
+          ./tools/generate_launchfile.sh
    
    1. launch avoidance file
           
