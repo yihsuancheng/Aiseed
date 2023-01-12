@@ -418,7 +418,7 @@ and open the second terminal, run
 >
 > **Note** you may need to change two things in ~/obs_ws/src/PX4-Avoidance/local_planner/launch/avoidance.launch  
 >          1. find "fnd" and replace it with "find"
->          2. find  <arg name="config_yaml" value="$(find local_planner)/resource/px4_config.yaml" /> and replace local_planner with avoidance
+>          2. find  "<arg name="config_yaml" value="$(find local_planner)/resource/px4_config.yaml" />" and replace "local_planner" with "avoidance"
 # Known issues
 ## Cuda installation
    After installing cuda and cudnn, the object detection will not work correctly.
