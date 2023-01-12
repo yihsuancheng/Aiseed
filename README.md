@@ -403,6 +403,9 @@ and open the second terminal, run
           export CAMERA_CONFIGS="camera_main,realsense,828112073098,0,0,0,0,0,0"
           cd ..
           ./tools/generate_launchfile.sh
+             
+   1. find ~/obs_ws/src/PX4-Avoidance/local_planner/launch and open it. find "fnd" and replace it with "find"
+
    
    1. launch avoidance file
           
